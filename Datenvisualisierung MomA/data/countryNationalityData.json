@@ -1,0 +1,450 @@
+[
+  {
+    "countryName": "Afghanistan",
+    "nationality": "Afghan"
+  },
+  {
+    "countryName": "Albania",
+    "nationality": "Albanian"
+  },
+  {
+    "countryName": "Algeria",
+    "nationality": "Algerian"
+  },
+  {
+    "countryName": "Argentina",
+    "nationality": "Argentine\nArgentinian"
+  },
+  {
+    "countryName": "Australia",
+    "nationality": "Australian"
+  },
+  {
+    "countryName": "Austria",
+    "nationality": "Austrian"
+  },
+  {
+    "countryName": "Bangladesh",
+    "nationality": "Bangladeshi"
+  },
+  {
+    "countryName": "Belgium",
+    "nationality": "Belgian"
+  },
+  {
+    "countryName": "Bolivia",
+    "nationality": "Bolivian"
+  },
+  {
+    "countryName": "Botswana",
+    "nationality": "Batswana"
+  },
+  {
+    "countryName": "Brazil",
+    "nationality": "Brazilian"
+  },
+  {
+    "countryName": "Bulgaria",
+    "nationality": "Bulgarian"
+  },
+  {
+    "countryName": "Cambodia",
+    "nationality": "Cambodian"
+  },
+  {
+    "countryName": "Cameroon",
+    "nationality": "Cameroonian"
+  },
+  {
+    "countryName": "Canada",
+    "nationality": "Canadian"
+  },
+  {
+    "countryName": "Chile",
+    "nationality": "Chilean"
+  },
+  {
+    "countryName": "China",
+    "nationality": "Chinese"
+  },
+  {
+    "countryName": "Colombia *",
+    "nationality": "Colombian"
+  },
+  {
+    "countryName": "Costa Rica",
+    "nationality": "Costa Rican"
+  },
+  {
+    "countryName": "Croatia",
+    "nationality": "Croatian"
+  },
+  {
+    "countryName": "Cuba",
+    "nationality": "Cuban"
+  },
+  {
+    "countryName": "Czech Republic",
+    "nationality": "Czech"
+  },
+  {
+    "countryName": "Denmark",
+    "nationality": "Danish"
+  },
+  {
+    "countryName": "Dominican Republic",
+    "nationality": "Dominican"
+  },
+  {
+    "countryName": "Ecuador",
+    "nationality": "Ecuadorian"
+  },
+  {
+    "countryName": "Egypt",
+    "nationality": "Egyptian"
+  },
+  {
+    "countryName": "El Salvador",
+    "nationality": "Salvadorian"
+  },
+  {
+    "countryName": "England",
+    "nationality": "English"
+  },
+  {
+    "countryName": "Estonia",
+    "nationality": "Estonian"
+  },
+  {
+    "countryName": "Ethiopia",
+    "nationality": "Ethiopian"
+  },
+  {
+    "countryName": "Fiji",
+    "nationality": "Fijian"
+  },
+  {
+    "countryName": "Finland",
+    "nationality": "Finnish"
+  },
+  {
+    "countryName": "France",
+    "nationality": "French"
+  },
+  {
+    "countryName": "Germany",
+    "nationality": "German"
+  },
+  {
+    "countryName": "Ghana",
+    "nationality": "Ghanaian"
+  },
+  {
+    "countryName": "Greece",
+    "nationality": "Greek"
+  },
+  {
+    "countryName": "Guatemala",
+    "nationality": "Guatemalan"
+  },
+  {
+    "countryName": "Haiti",
+    "nationality": "Haitian"
+  },
+  {
+    "countryName": "Honduras",
+    "nationality": "Honduran"
+  },
+  {
+    "countryName": "Hungary",
+    "nationality": "Hungarian"
+  },
+  {
+    "countryName": "Iceland",
+    "nationality": "Icelandic"
+  },
+  {
+    "countryName": "India",
+    "nationality": "Indian"
+  },
+  {
+    "countryName": "Indonesia",
+    "nationality": "Indonesian"
+  },
+  {
+    "countryName": "Iran",
+    "nationality": "Iranian"
+  },
+  {
+    "countryName": "Iraq",
+    "nationality": "Iraqi"
+  },
+  {
+    "countryName": "Ireland",
+    "nationality": "Irish"
+  },
+  {
+    "countryName": "Israel",
+    "nationality": "Israeli"
+  },
+  {
+    "countryName": "Italy",
+    "nationality": "Italian"
+  },
+  {
+    "countryName": "Jamaica",
+    "nationality": "Jamaican"
+  },
+  {
+    "countryName": "Japan",
+    "nationality": "Japanese"
+  },
+  {
+    "countryName": "Jordan",
+    "nationality": "Jordanian"
+  },
+  {
+    "countryName": "Kenya",
+    "nationality": "Kenyan"
+  },
+  {
+    "countryName": "Kuwait",
+    "nationality": "Kuwaiti"
+  },
+  {
+    "countryName": "Laos",
+    "nationality": "Lao"
+  },
+  {
+    "countryName": "Latvia",
+    "nationality": "Latvian"
+  },
+  {
+    "countryName": "Lebanon",
+    "nationality": "Lebanese"
+  },
+  {
+    "countryName": "Libya",
+    "nationality": "Libyan"
+  },
+  {
+    "countryName": "Lithuania",
+    "nationality": "Lithuanian"
+  },
+  {
+    "countryName": "Madagascar",
+    "nationality": "Malagasy"
+  },
+  {
+    "countryName": "Malaysia",
+    "nationality": "Malaysian"
+  },
+  {
+    "countryName": "Mali",
+    "nationality": "Malian"
+  },
+  {
+    "countryName": "Malta",
+    "nationality": "Maltese"
+  },
+  {
+    "countryName": "Mexico",
+    "nationality": "Mexican"
+  },
+  {
+    "countryName": "Mongolia",
+    "nationality": "Mongolian"
+  },
+  {
+    "countryName": "Morocco",
+    "nationality": "Moroccan"
+  },
+  {
+    "countryName": "Mozambique",
+    "nationality": "Mozambican"
+  },
+  {
+    "countryName": "Namibia",
+    "nationality": "Namibian"
+  },
+  {
+    "countryName": "Nepal",
+    "nationality": "Nepalese"
+  },
+  {
+    "countryName": "Netherlands",
+    "nationality": "Dutch"
+  },
+  {
+    "countryName": "New Zealand",
+    "nationality": "New Zealand"
+  },
+  {
+    "countryName": "Nicaragua",
+    "nationality": "Nicaraguan"
+  },
+  {
+    "countryName": "Nigeria",
+    "nationality": "Nigerian"
+  },
+  {
+    "countryName": "Norway",
+    "nationality": "Norwegian"
+  },
+  {
+    "countryName": "Pakistan",
+    "nationality": "Pakistani"
+  },
+  {
+    "countryName": "Panama",
+    "nationality": "Panamanian"
+  },
+  {
+    "countryName": "Paraguay",
+    "nationality": "Paraguayan"
+  },
+  {
+    "countryName": "Peru",
+    "nationality": "Peruvian"
+  },
+  {
+    "countryName": "Philippines",
+    "nationality": "Philippine"
+  },
+  {
+    "countryName": "Poland",
+    "nationality": "Polish"
+  },
+  {
+    "countryName": "Portugal",
+    "nationality": "Portuguese"
+  },
+  {
+    "countryName": "Romania",
+    "nationality": "Romanian"
+  },
+  {
+    "countryName": "Russia",
+    "nationality": "Russian"
+  },
+  {
+    "countryName": "Saudi Arabia",
+    "nationality": "Saudi"
+  },
+  {
+    "countryName": "Scotland",
+    "nationality": "Scottish"
+  },
+  {
+    "countryName": "Senegal",
+    "nationality": "Senegalese"
+  },
+  {
+    "countryName": "Serbia",
+    "nationality": "Serbian"
+  },
+  {
+    "countryName": "Singapore",
+    "nationality": "Singaporean"
+  },
+  {
+    "countryName": "Slovakia",
+    "nationality": "Slovak"
+  },
+  {
+    "countryName": "South Africa",
+    "nationality": "South African"
+  },
+  {
+    "countryName": "South Korea",
+    "nationality": "Korean"
+  },
+  {
+    "countryName": "Spain",
+    "nationality": "Spanish"
+  },
+  {
+    "countryName": "Sri Lanka",
+    "nationality": "Sri Lankan"
+  },
+  {
+    "countryName": "Sudan",
+    "nationality": "Sudanese"
+  },
+  {
+    "countryName": "Sweden",
+    "nationality": "Swedish"
+  },
+  {
+    "countryName": "Switzerland",
+    "nationality": "Swiss"
+  },
+  {
+    "countryName": "Syria",
+    "nationality": "Syrian"
+  },
+  {
+    "countryName": "Taiwan",
+    "nationality": "Taiwanese"
+  },
+  {
+    "countryName": "Tajikistan",
+    "nationality": "Tajikistani"
+  },
+  {
+    "countryName": "Thailand",
+    "nationality": "Thai"
+  },
+  {
+    "countryName": "Tonga",
+    "nationality": "Tongan"
+  },
+  {
+    "countryName": "Tunisia",
+    "nationality": "Tunisian"
+  },
+  {
+    "countryName": "Turkey",
+    "nationality": "Turkish"
+  },
+  {
+    "countryName": "Ukraine",
+    "nationality": "Ukrainian"
+  },
+  {
+    "countryName": "United Arab Emirates",
+    "nationality": "Emirati"
+  },
+  {
+    "countryName": "United Kingdom",
+    "nationality": "British"
+  },
+  {
+    "countryName": "United States",
+    "nationality": "American"
+  },
+  {
+    "countryName": "Uruguay",
+    "nationality": "Uruguayan"
+  },
+  {
+    "countryName": "Venezuela",
+    "nationality": "Venezuelan"
+  },
+  {
+    "countryName": "Vietnam",
+    "nationality": "Vietnamese"
+  },
+  {
+    "countryName": "Wales",
+    "nationality": "Welsh"
+  },
+  {
+    "countryName": "Zambia",
+    "nationality": "Zambian"
+  },
+  {
+    "countryName": "Zimbabwe",
+    "nationality": "Zimbabwean"
+  }
+]

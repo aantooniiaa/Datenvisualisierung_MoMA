@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: white;
+    color: black;
+    font-family: 'Barlow', sans-serif;
+}
+
+
+#stage{
+    width: 1280px;
+    height: 720px;
+    margin-top: 50px;
+    margin-left: 80px;
+    background-color:white ;
+}
+
+#title1{
+    background-color: white;
+    height: 30px;
+    width: 300px;
+    margin-top: -700px;
+    margin-left: 80px;
+    position: absolute;
+    display: block;
+    text-decoration: underline;
+    
+} 
+
+ #menuLabel{
+    background-color: white;
+    height: 30px;
+    width: 300px;
+    margin-top: -720px;
+    margin-left: 1050px;
+    position: absolute;
+    display: flex;
+} 
+
+
+  #menuAll{
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    margin-top: 0px;
+    margin-left: 100px; 
+    display: block
+} 
+
+ #menuFemale{
+    background-color: white;
+    height: 30px;
+    width: 150px;
+    margin-top: 0px;
+    margin-left: 0px;
+    display: block 
+
+} 
+
+#menuMale{
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    margin-top: 0px;
+    margin-left: 0px;  
+    display: block
+
+} 
+
+#hoverLabel{
+    background-color: white;
+    height: 20px;
+    width: 500px;
+    margin-top: -20px;
+    margin-left: 80px;
+    position: absolute
+} 
+
+.country{
+    background-color:rgba(162, 101, 205, 1);
+    margin-top: 100px;
+    margin-left: 50px;
+    position: absolute;
+    border-radius: 0%;
+}
+
+.womenCountry{
+    background-color: rgba(210, 168, 240,1);
+    margin-top: 100px;
+    margin-left: 50px;
+    position: absolute;
+    border-radius: 0%;
+}
+
+.menCountry{
+    background-color: rgba(110, 56, 148, 1);
+    margin-top: 100px;
+    margin-left: 50px;
+    position: absolute;
+    border-radius: 0%;
+}
+
+.hover{
+    background-color: rgba(162, 101, 205, 0.7);
+} 
+
+.hoverWomen{
+    background-color: rgba(210, 168, 240,0.7);
+} 
+
+.hoverMen{
+    background-color: rgba(110, 56, 148, 0.7);
+} 
+
+#nextButton {
+    margin-top: 360px;
+}
+
+
+
+
+
