@@ -88,7 +88,7 @@ body{
 }
 
 .womenCountry{
-    background-color: rgba(210, 168, 240,1);
+    background-color: rgba(212, 153, 255,1);
     margin-top: 100px;
     margin-left: 50px;
     position: absolute;
@@ -108,7 +108,7 @@ body{
 } 
 
 .hoverWomen{
-    background-color: rgba(210, 168, 240,0.7);
+    background-color: rgba(212, 153, 255,0.7);;
 } 
 
 .hoverMen{

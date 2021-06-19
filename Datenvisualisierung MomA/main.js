@@ -79,6 +79,7 @@ function menuMaleView() {
     };
 };
 
+
 function createDots() {
 
     const artistsMax = gmynd.dataMax(allCountries, "totalCount");
@@ -194,7 +195,7 @@ function drawTotalMap() {
 function drawFemaleMap() { 
     femaleMapShow = true;
   
-    $('.country').each(function() {
+    $('.womenCountry').each(function() {
       const femaleDotData = $(this).data();
       $(this).css({
           'background-color': femaleDotData.color,
@@ -206,7 +207,7 @@ function drawFemaleMap() {
 function drawMaleMap() { 
     maleMapShow = true;
   
-    $('.country').each(function() {
+    $('.menCountry').each(function() {
       const maleDotData = $(this).data();
       $(this).css({
           'background-color': maleDotData.color,
@@ -216,17 +217,5 @@ function drawMaleMap() {
 };
 
 
-// function clickHandler(event) {
-//     const dot = $(event.target);
-//     let contintent = dot.data().continent;
 
-//     $('country[data-continent= "' + continent + '"]').css({
-//         'background-color': 'yellow',
-//     })
-
-//     $(".clicked").removeClass("clicked");
-//     dot.addClass("clicked");
-//     //$('#clickLabel').text(country.countryName);
-//     $('#clickLabel').text(dot.data().countryName);  //Zugriff auf alle Paramenter von country Objekt (nicht nur countryName)
-// };
 
