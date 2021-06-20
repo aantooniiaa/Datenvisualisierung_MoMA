@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
     background-color: white;
     color: black;
@@ -10,15 +10,15 @@ body{
 }
 
 
-#stage{
+#stage {
     width: 1280px;
     height: 720px;
     margin-top: 50px;
     margin-left: 80px;
-    background-color:white ;
+    background-color: white;
 }
 
-#title1{
+#title1 {
     background-color: white;
     height: 30px;
     width: 300px;
@@ -27,10 +27,10 @@ body{
     position: absolute;
     display: block;
     text-decoration: underline;
-    
-} 
 
- #menuLabel{
+}
+
+#menuLabel {
     background-color: white;
     height: 30px;
     width: 300px;
@@ -38,82 +38,74 @@ body{
     margin-left: 1050px;
     position: absolute;
     display: flex;
-} 
+}
 
 
-  #menuAll{
+#menuAll {
     background-color: white;
     height: 30px;
     width: 100px;
     margin-top: 0px;
-    margin-left: 100px; 
+    margin-left: 100px;
     display: block
-} 
+}
 
- #menuFemale{
+#menuFemale {
     background-color: white;
     height: 30px;
     width: 150px;
     margin-top: 0px;
     margin-left: 0px;
-    display: block 
+    display: block
 
-} 
+}
 
-#menuMale{
+#menuMale {
     background-color: white;
     height: 30px;
     width: 100px;
     margin-top: 0px;
-    margin-left: 0px;  
+    margin-left: 0px;
     display: block
 
-} 
+}
 
-#hoverLabel{
+#hoverLabel {
     background-color: white;
     height: 20px;
     width: 500px;
     margin-top: -20px;
     margin-left: 80px;
     position: absolute
-} 
+}
 
-.country{
-    background-color:rgba(162, 101, 205, 1);
+.country {
+    background-color: rgba(162, 101, 205, 1);
     margin-top: 100px;
     margin-left: 50px;
     position: absolute;
-    border-radius: 0%;
+    border-radius: 0;
 }
 
-.womenCountry{
-    background-color: rgba(212, 153, 255,1);
-    margin-top: 100px;
-    margin-left: 50px;
-    position: absolute;
-    border-radius: 0%;
+.womenCountry {
+    background-color: rgba(212, 153, 255, 1);
 }
 
-.menCountry{
+.menCountry {
     background-color: rgba(110, 56, 148, 1);
-    margin-top: 100px;
-    margin-left: 50px;
-    position: absolute;
-    border-radius: 0%;
 }
 
-.hover{
+.hover {
     background-color: rgba(162, 101, 205, 0.7);
-} 
+}
 
-.hoverWomen{
-    background-color: rgba(212, 153, 255,0.7);;
-} 
+.hoverWomen {
+    background-color: rgba(212, 153, 255, 0.7);;
+}
 
-.hoverMen{
+.hoverMen {
     background-color: rgba(110, 56, 148, 0.7);
-} 
+}
 
 #nextButton {
     margin-top: 360px;
