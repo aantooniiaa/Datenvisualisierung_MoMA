@@ -1,4 +1,5 @@
 //zT fehlen Daten in allCountries? zB Länder die nur weibliche Künstler haben fehlen
+//Länder allgemein fehlen zB Iran
 //zT gibt es gender die groß und kleingeschrieben werden und es gibt non binory gender und welche ohne gender --> totalCount ist größer als female und male count zsm
 
 let stageWidth, stageHeight;
@@ -6,9 +7,11 @@ let data;
 let allCountries;
 let womenCountries;
 let menCountries;
-let totalMapShow;
-let femaleMapShow;
-let maleMapShow;
+let decadeData;
+let groupedCategories = {};
+// let totalMapShow;
+// let femaleMapShow;
+// let maleMapShow;
 let currentScene = "total";
 
 $(function () {
@@ -17,6 +20,7 @@ $(function () {
   prepareData();
   createDots();
   setView("total");
+  drawBarChart1();
 });
 
 function prepareData() {
@@ -46,10 +50,47 @@ function prepareData() {
   allCountries = gmynd.mergeData(allCountries, menCountries, "alpha3Code");
   allCountries = gmynd.deleteProps(allCountries, "gender");
 
-  //console.log(allCountries);
-}
+
+  artworkData.forEach(artwork=> {
+    artwork.decade = Math.floor((parseInt(artwork.dateAcquired)-1920)/10)*10 + 1920;
+    
+    // calculate simplified gender
+    let genders = artwork.gender.split(" ");
+    if (genders.length == 1) {
+      if (genders[0] == "(Male)") {
+        artwork.simpleGender = 'male';
+      } else if (genders[0] == "(Female)") {
+        artwork.simpleGender = 'female';
+      } else {
+        artwork.simpleGender = 'unknown';
+      }
+    } else {
+      artwork.simpleGender = 'group';
+    }
+  });
+  let decadeData = gmynd.groupData(artworkData,  ["decade"]);
+
+  console.log(decadeData);
+
+
+  for (let decadeNumber in decadeData) {
+    let decadeArray = decadeData[decadeNumber];
+    let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
+     //console.log(decadeArray);
+     //console.log(cumulatedDecade);
+     groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
+    /*  console.log(groupedCategories)
+     console.log(decadeNumber) */
+   }
+
+// let twentiesArchitecture = gmynd.groupData(cumulatedDecade, ["architecture & design"])
+
+// console.log(twentiesArchitecture);
+};
 
 function createDots() {
+
+  //Weltkarten
   const artistsMax = gmynd.dataMax(allCountries, "totalCount");
   const womenMax = gmynd.dataMax(allCountries, "femaleCount");
   const menMax = gmynd.dataMax(allCountries, "maleCount");
@@ -83,7 +124,10 @@ function createDots() {
 
     totalDot.mouseover(() => {
       totalDot.addClass("hover");
-      $('#hoverLabel').text(country.country + " | " + country.totalCount);
+      let val = country.totalCount;
+      if ( currentScene === "men") val=country.maleCount;
+      else if (currentScene==="women")val = country.femaleCount;
+      $('#hoverLabel').text(country.country + " | " + val);
     });
 
     totalDot.mouseout(() => {
@@ -91,9 +135,84 @@ function createDots() {
       $('#hoverLabel').text("");
     });
 
-    $('#stage').append(totalDot);
+    //$('#stage').append(totalDot);
   });
-}
+
+ //Balkendiagramme
+ //für jedes Jahr ein Balken
+ //aus jedem Jahr: ein Rechteck aus groupedCategories pro Kategorie
+
+ for (let decadeNumber in decadeData) {
+   let decadeArray = decadeData[decadeNumber];
+   let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
+   //console.log(decadeNumber);
+   //console.log(cumulatedDecade);
+   let groupedCategories = gmynd.groupData(cumulatedDecade, "category");
+   //console.log(groupedCategories)
+   for (let i = 0; i< decadeNumber.length; i++){
+    let bar = $ ('<div> </div>');
+    const relative_h = 1000;
+    const x = i * 100;
+    const y = $('#stage').height() - realtive_h;
+   }
+   bar.data({
+    relativeHeight: realtive_h,
+    relativeWidth: 10,
+    relativeLeft: x,
+    relativeTop: y,
+    // absoluteHeight: r * 2,
+    // absoluteWidth: r * 2,
+    // absoluteLeft: xPos,
+    // absoluteTop: yPos,
+  });
+  $('#stage').append(bar);
+ };
+
+//  for (let i = 0; i< decadeNumber; i++){
+//   let bar = $ ('<div> </div>');
+//   const relative_h = 1000;
+//   const x = i * 100;
+//   const y = $('#stage').height() - realtive_h;
+//  }
+  //  bar.data({
+  //   relativeHeight: realtive_h,
+  //   relativeWidth: 10,
+  //   relativeLeft: x,
+  //   relativeTop: y,
+  //   // absoluteHeight: r * 2,
+  //   // absoluteWidth: r * 2,
+  //   // absoluteLeft: xPos,
+  //   // absoluteTop: yPos,
+  // });
+
+    // for (let i = 0; i < cumulatedDecade.lenght; i++) {
+    //   //console.log(cumulatedDecade[i]);
+    //   let bar = $ ('<div> </div>');
+    //   const relative_h = 1000;
+    //   const x = i * 100 ;
+    //   const y = $('#stage').height() - relative_h;
+    //   // bar.css({
+    //   //     'height': relative_h,
+    //   //     'background-color': 'white',
+    //   //     'position': 'absolute',
+    //   //     'left': x,
+    //   //     'top': y,
+    //   });
+    //   bar.data({
+    //     relativeHeight: realtive_h,
+    //     relativeWidth: 10,
+    //     relativeLeft: x,
+    //     relativeTop: y,
+    //     // absoluteHeight: r * 2,
+    //     // absoluteWidth: r * 2,
+    //     // absoluteLeft: xPos,
+    //     // absoluteTop: yPos,
+    //   });
+
+      // $('#stage').append(bar);
+  
+  //};
+};
 
 function setView(viewTitle) {
   const countries = $('.country');
@@ -110,6 +229,100 @@ function setView(viewTitle) {
     }
   }
   currentScene = viewTitle;
+};
+
+function nextView1() {
+ const countries = $('.country');
+ countries.removeClass();
+ let title1 = document.getElementById("title1");
+  title1.parentNode.removeChild(title1);
+ let menu = document.getElementById("menuLabel");
+  menu.parentNode.removeChild(menu);
+};
+
+const boxColors = {
+"Architecture & Design": "blue",
+"Painting & Sculpture": "turquoise",
+"Drawings & Prints": "green",
+"photography": "yellow",
+"Media & Performance": "orange",
+"Film": "red"
+};
+function drawBarChart1() {
+  const barWidth = 50;
+  let barNo = 0;
+  for (let dec in groupedCategories) {
+    let decade = groupedCategories[dec];
+    let barX = barNo * 100;
+    let blockY = 0;
+    for (let cat in decade) {
+let category= decade[cat];
+category = gmynd.addPropPercentage(category, "count");
+let total = gmynd.dataSum(category, "count");
+let h = gmynd.map(total, 0, 300, 0, 100, true);
+let currentBoxX = 0;
+category.forEach((gender, i)=> {
+
+  let color = "black";
+  if (boxColors[cat]) color =chroma(boxColors[cat]).brighten(i);
+  let w = gmynd.map(gender.countPercentage, 0, 1, 0, barWidth);
+  let dot = $('<div></div>')
+  .css({
+    position: "absolute",
+    left: barX + currentBoxX,
+    top: blockY,
+    width: w,
+    height: h,
+    "background-color": color
+  });
+$('#stage').append(dot);
+  currentBoxX+=w;
+});
+blockY+=h;
+    }
+    barNo++;
+  }
 }
+  /* artworkData.forEach(artwork=> {
+    artwork.decade = Math.floor((parseInt(artwork.dateAcquired)-1920)/10)*10 + 1920;
+    
+    // calculate simplified gender
+    let genders = artwork.gender.split(" ");
+    if (genders.length == 1) {
+      if (genders[0] == "(Male)") {
+        artwork.simpleGender = 'male';
+      } else if (genders[0] == "(Female)") {
+        artwork.simpleGender = 'female';
+      } else {
+        artwork.simpleGender = 'unknown';
+      }
+    } else {
+      artwork.simpleGender = 'group';
+    }
+  });
+  let decadeData = gmynd.groupData(artworkData,  ["decade"]);
+  //console.log(decadeData);
 
-
+decadeData.forEach((year) => {
+          console.log(year);
+          let h = 100 
+          let w =  50 
+          let x = 80;
+          let y = stageHeight;
+    
+          
+          let twenties = $('<div></div>');
+          twenties.addClass("year20s");
+          twenties.css({
+              "background-color": "#2D5376",
+              "position": "absolute",
+              height: h,
+              width: w,
+              left: x,
+              top: y,
+              "border-radius": 0,
+          });
+          $('#stage').append(twenties);
+          });
+      };
+ */

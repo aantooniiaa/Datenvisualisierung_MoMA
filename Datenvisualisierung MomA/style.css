@@ -74,7 +74,7 @@ body {
     background-color: white;
     height: 20px;
     width: 500px;
-    margin-top: -20px;
+    margin-top: 300px;
     margin-left: 80px;
     position: absolute
 }
@@ -108,8 +108,16 @@ body {
 }
 
 #nextButton {
-    margin-top: 360px;
+    margin-top: -360px;
+    margin-left: 1400px;
 }
+
+/* #backButton {
+    margin-top: 0px;
+    margin-left: 40px;
+} */
+
+
 
 
 
