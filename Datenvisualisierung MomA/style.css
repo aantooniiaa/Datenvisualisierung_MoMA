@@ -18,6 +18,17 @@ body {
     background-color: white;
 }
 
+/* #titleLabel {
+    background-color: white;
+    height: 30px;
+    width: 300px;
+    margin-top: -700px;
+    margin-left: 80px;
+    position: absolute;
+    display: block;
+    text-decoration: underline;
+} */
+
 #title1 {
     background-color: white;
     height: 30px;
@@ -34,7 +45,7 @@ body {
     background-color: white;
     height: 30px;
     width: 300px;
-    margin-top: -720px;
+    margin-top: -700px;
     margin-left: 1050px;
     position: absolute;
     display: flex;
@@ -117,7 +128,61 @@ body {
     margin-left: 40px;
 } */
 
+#title2 {
+    background-color: white;
+    height: 30px;
+    width: 200px;
+    margin-top: -360px;
+    margin-left: 80px;
+    position: absolute;
+    display: block;
+    text-decoration: underline;
+}
 
+#menuAbsolute {
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    margin-top: -360px;
+    margin-left: 1200px;
+    display: block
+
+}
+
+#menuRelative {
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    margin-top: -30px;
+    margin-left: 1300px;
+    display: block
+}
+
+.bar{ 
+    margin-top: 0px;
+    margin-left: 80px;
+    position: absolute;
+    border-radius: 0;
+
+}
+
+.years {
+    background-color: white;
+    color: black;
+    width: 50px;
+    border: none;
+    margin-bottom: 15px;
+    margin-left: 50px;
+    font-size: 16px;
+    font-family: 'Barlow', sans-serif;
+}
+
+#yearView {
+    position: absolute;
+    top: 720px;
+    left: 30px;
+    display:inline-flex;
+}
 
 
 

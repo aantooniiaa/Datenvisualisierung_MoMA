@@ -1,6 +1,13 @@
 //zT fehlen Daten in allCountries? zB Länder die nur weibliche Künstler haben fehlen
-//Länder allgemein fehlen zB Iran
 //zT gibt es gender die groß und kleingeschrieben werden und es gibt non binory gender und welche ohne gender --> totalCount ist größer als female und male count zsm
+//Landgrößen stimmen nicht mit Maxima überein, da dot nur mit r definiert wird und nicht mit rF unf rM
+
+//Jahrzehnte unter Balken, Titel und Menu Balken
+//Kategorien sortieren
+//Legende?
+//relatives Balkendiagramm
+
+//Streudiagramm!
 
 let stageWidth, stageHeight;
 let data;
@@ -21,6 +28,13 @@ $(function () {
   createDots();
   setView("total");
   drawBarChart1();
+  $('.bar').hide();
+  let title2 = document.getElementById("title2");
+  title2.parentNode.removeChild(title2);
+  let menu2 = document.getElementById("menuLabel2");
+  menu2.parentNode.removeChild(menu2);
+  let yearView = document.getElementById("yearView");
+  yearView.parentNode.removeChild(yearView);
 });
 
 function prepareData() {
@@ -51,41 +65,37 @@ function prepareData() {
   allCountries = gmynd.deleteProps(allCountries, "gender");
 
 
-  artworkData.forEach(artwork=> {
-    artwork.decade = Math.floor((parseInt(artwork.dateAcquired)-1920)/10)*10 + 1920;
-    
+  artworkData.forEach(artwork => {
+    artwork.decade = Math.floor((parseInt(artwork.dateAcquired) - 1920) / 10) * 10 + 1920;
+
     // calculate simplified gender
     let genders = artwork.gender.split(" ");
     if (genders.length == 1) {
       if (genders[0] == "(Male)") {
-        artwork.simpleGender = 'male';
+        artwork.simpleGender = 2;
       } else if (genders[0] == "(Female)") {
-        artwork.simpleGender = 'female';
+        artwork.simpleGender = 0;
       } else {
-        artwork.simpleGender = 'unknown';
+        artwork.simpleGender = 3;
       }
     } else {
-      artwork.simpleGender = 'group';
+      artwork.simpleGender = 1;
     }
   });
-  let decadeData = gmynd.groupData(artworkData,  ["decade"]);
+  let decadeData = gmynd.groupData(artworkData, ["decade"]);
 
-  console.log(decadeData);
+  console.log(groupedCategories);
 
 
   for (let decadeNumber in decadeData) {
     let decadeArray = decadeData[decadeNumber];
     let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
-     //console.log(decadeArray);
-     //console.log(cumulatedDecade);
-     groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
-    /*  console.log(groupedCategories)
-     console.log(decadeNumber) */
-   }
-
-// let twentiesArchitecture = gmynd.groupData(cumulatedDecade, ["architecture & design"])
-
-// console.log(twentiesArchitecture);
+    //console.log(decadeArray);
+    //console.log(cumulatedDecade);
+    groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
+    // console.log(groupedCategories)
+    //  console.log(decadeNumber) 
+  }
 };
 
 function createDots() {
@@ -97,8 +107,8 @@ function createDots() {
   allCountries.forEach(country => {
     const area = gmynd.map(country.totalCount, 0, artistsMax, 25, 1000);
     const r = gmynd.circleRadius(area);
-    const x = gmynd.map(country.longitude, -180, 180, 0, stageWidth) - r;  //Längengrade
-    const y = gmynd.map(country.latitude, -90, 90, stageHeight, 0) - r;  // Breitengrade
+    const x = gmynd.map(country.longitude, -180, 180, 0, stageWidth) - r; //Längengrade
+    const y = gmynd.map(country.latitude, -90, 90, stageHeight, 0) - r; // Breitengrade
 
     const femaleArea = gmynd.map(country.femaleCount, 0, womenMax, 25, 1000);
     const femaleR = gmynd.circleRadius(femaleArea);
@@ -115,7 +125,7 @@ function createDots() {
       'top': y,
     });
 
-    totalDot.data(country);  //Daten in HTML Objekten speichern
+    totalDot.data(country); //Daten in HTML Objekten speichern
     totalDot.data({
       femaleR: femaleR,
       maleR: maleR,
@@ -125,8 +135,8 @@ function createDots() {
     totalDot.mouseover(() => {
       totalDot.addClass("hover");
       let val = country.totalCount;
-      if ( currentScene === "men") val=country.maleCount;
-      else if (currentScene==="women")val = country.femaleCount;
+      if (currentScene === "men") val = country.maleCount;
+      else if (currentScene === "women") val = country.femaleCount;
       $('#hoverLabel').text(country.country + " | " + val);
     });
 
@@ -135,83 +145,39 @@ function createDots() {
       $('#hoverLabel').text("");
     });
 
-    //$('#stage').append(totalDot);
+    $('#stage').append(totalDot);
   });
 
- //Balkendiagramme
- //für jedes Jahr ein Balken
- //aus jedem Jahr: ein Rechteck aus groupedCategories pro Kategorie
+  //Balkendiagramme
+  //für jedes Jahr ein Balken
+  //aus jedem Jahr: ein Rechteck aus groupedCategories pro Kategorie
 
- for (let decadeNumber in decadeData) {
-   let decadeArray = decadeData[decadeNumber];
-   let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
-   //console.log(decadeNumber);
-   //console.log(cumulatedDecade);
-   let groupedCategories = gmynd.groupData(cumulatedDecade, "category");
-   //console.log(groupedCategories)
-   for (let i = 0; i< decadeNumber.length; i++){
-    let bar = $ ('<div> </div>');
-    const relative_h = 1000;
-    const x = i * 100;
-    const y = $('#stage').height() - realtive_h;
-   }
-   bar.data({
-    relativeHeight: realtive_h,
-    relativeWidth: 10,
-    relativeLeft: x,
-    relativeTop: y,
-    // absoluteHeight: r * 2,
-    // absoluteWidth: r * 2,
-    // absoluteLeft: xPos,
-    // absoluteTop: yPos,
-  });
-  $('#stage').append(bar);
- };
+  //  for (let decadeNumber in decadeData) {
+  //    let decadeArray = decadeData[decadeNumber];
+  //    let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
+  //    //console.log(decadeNumber);
+  //    //console.log(cumulatedDecade);
+  //    let groupedCategories = gmynd.groupData(cumulatedDecade, "category");
+  //    //console.log(groupedCategories)
+  //    for (let i = 0; i< decadeNumber.length; i++){
+  //     let bar = $ ('<div> </div>');
+  //     const relative_h = 1000;
+  //     const x = i * 100;
+  //     const y = $('#stage').height() - realtive_h;
+  //    }
+  //    bar.data({
+  //     relativeHeight: realtive_h,
+  //     relativeWidth: 10,
+  //     relativeLeft: x,
+  //     relativeTop: y,
+  //     // absoluteHeight: r * 2,
+  //     // absoluteWidth: r * 2,
+  //     // absoluteLeft: xPos,
+  //     // absoluteTop: yPos,
+  //   });
+  //   $('#stage').append(bar);
+  //  };
 
-//  for (let i = 0; i< decadeNumber; i++){
-//   let bar = $ ('<div> </div>');
-//   const relative_h = 1000;
-//   const x = i * 100;
-//   const y = $('#stage').height() - realtive_h;
-//  }
-  //  bar.data({
-  //   relativeHeight: realtive_h,
-  //   relativeWidth: 10,
-  //   relativeLeft: x,
-  //   relativeTop: y,
-  //   // absoluteHeight: r * 2,
-  //   // absoluteWidth: r * 2,
-  //   // absoluteLeft: xPos,
-  //   // absoluteTop: yPos,
-  // });
-
-    // for (let i = 0; i < cumulatedDecade.lenght; i++) {
-    //   //console.log(cumulatedDecade[i]);
-    //   let bar = $ ('<div> </div>');
-    //   const relative_h = 1000;
-    //   const x = i * 100 ;
-    //   const y = $('#stage').height() - relative_h;
-    //   // bar.css({
-    //   //     'height': relative_h,
-    //   //     'background-color': 'white',
-    //   //     'position': 'absolute',
-    //   //     'left': x,
-    //   //     'top': y,
-    //   });
-    //   bar.data({
-    //     relativeHeight: realtive_h,
-    //     relativeWidth: 10,
-    //     relativeLeft: x,
-    //     relativeTop: y,
-    //     // absoluteHeight: r * 2,
-    //     // absoluteWidth: r * 2,
-    //     // absoluteLeft: xPos,
-    //     // absoluteTop: yPos,
-    //   });
-
-      // $('#stage').append(bar);
-  
-  //};
 };
 
 function setView(viewTitle) {
@@ -229,61 +195,85 @@ function setView(viewTitle) {
     }
   }
   currentScene = viewTitle;
+
 };
 
 function nextView1() {
- const countries = $('.country');
- countries.removeClass();
- let title1 = document.getElementById("title1");
+  const countries = $('.country');
+  countries.removeClass();
+  let title1 = document.getElementById("title1");
   title1.parentNode.removeChild(title1);
- let menu = document.getElementById("menuLabel");
+  let menu = document.getElementById("menuLabel");
   menu.parentNode.removeChild(menu);
+  $('.bar').fadeIn();
+  let title2 = document.getElementById("title2");
+  title2.parentNode.addChild(title2);
+  let menu2 = document.getElementById("menuLabel2");
+  menu2.parentNode.addChild(menu2);
+  let yearView = document.getElementById("yearView");
+  yearView.parentNode.addChild(yearView);
 };
 
+
+
+
+
 const boxColors = {
-"Architecture & Design": "blue",
-"Painting & Sculpture": "turquoise",
-"Drawings & Prints": "green",
-"photography": "yellow",
-"Media & Performance": "orange",
-"Film": "red"
+  "Architecture & Design": "#81BCE4",
+  "Painting & Sculpture": "#7DE8AA",
+  "Drawings & Prints": "#81E4D1",
+  "Photography": "#F08175",
+  "Media & Performance": "#F7AE6E",
+  "Film": "#FFE166",
 };
+
 function drawBarChart1() {
   const barWidth = 50;
   let barNo = 0;
   for (let dec in groupedCategories) {
     let decade = groupedCategories[dec];
+    //let decMax = gmynd.dataSum(category, "count");
+    //let decMax = gmynd.dataMax(decMax, "count");
+    //console.log("decMax: "+ decMax);
     let barX = barNo * 100;
-    let blockY = 0;
+    let blockY = stageHeight;
     for (let cat in decade) {
-let category= decade[cat];
-category = gmynd.addPropPercentage(category, "count");
-let total = gmynd.dataSum(category, "count");
-let h = gmynd.map(total, 0, 300, 0, 100, true);
-let currentBoxX = 0;
-category.forEach((gender, i)=> {
+      let category = decade[cat];
+      category = gmynd.addPropPercentage(category, "count");
+      let total = gmynd.dataSum(category, "count");
+      //console.log(total);
+      // let decMax = gmynd.dataMax(category, "count");
+      // console.log(decMax);
+      let h = gmynd.map(total, 0, 500, 0, 100, true);
+      blockY -= h;
 
-  let color = "black";
-  if (boxColors[cat]) color =chroma(boxColors[cat]).brighten(i);
-  let w = gmynd.map(gender.countPercentage, 0, 1, 0, barWidth);
-  let dot = $('<div></div>')
-  .css({
-    position: "absolute",
-    left: barX + currentBoxX,
-    top: blockY,
-    width: w,
-    height: h,
-    "background-color": color
-  });
-$('#stage').append(dot);
-  currentBoxX+=w;
-});
-blockY+=h;
+      let currentBoxX = 0;
+      gmynd.sortData(category, 'simpleGender');
+      console.log(category)
+      category.forEach((gender, i) => {
+
+        let color = "black";
+        if (boxColors[cat]) color = chroma(boxColors[cat]).darken(gender.simpleGender);
+        let w = gmynd.map(gender.countPercentage, 0, 1, 0, barWidth);
+        let dot = $('<div></div>');
+        dot.addClass("bar")
+          .css({
+            position: "absolute",
+            left: barX + currentBoxX,
+            top: blockY,
+            width: w,
+            height: h,
+            "background-color": color
+          });
+        $('#stage').append(dot);
+        currentBoxX += w;
+      });
+   
     }
     barNo++;
   }
 }
-  /* artworkData.forEach(artwork=> {
+/* artworkData.forEach(artwork=> {
     artwork.decade = Math.floor((parseInt(artwork.dateAcquired)-1920)/10)*10 + 1920;
     
     // calculate simplified gender
