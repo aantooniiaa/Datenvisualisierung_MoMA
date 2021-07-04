@@ -38,6 +38,7 @@ body {
     position: absolute;
     display: block;
     text-decoration: underline;
+    /* z-index: 2; */
 
 }
 
@@ -118,35 +119,36 @@ body {
     background-color: rgba(110, 56, 148, 0.7);
 }
 
-#nextButton {
+.button {
     margin-top: -360px;
     margin-left: 1400px;
 }
 
-/* #backButton {
+ #backButton {
     margin-top: 0px;
     margin-left: 40px;
-} */
+    height: 30px;
+}
 
 #title2 {
     background-color: white;
     height: 30px;
     width: 200px;
-    margin-top: -360px;
+    margin-top: -390px;
     margin-left: 80px;
     position: absolute;
     display: block;
     text-decoration: underline;
+    /* z-index: 1; */
 }
 
 #menuAbsolute {
     background-color: white;
     height: 30px;
     width: 100px;
-    margin-top: -360px;
-    margin-left: 1200px;
-    display: block
-
+    margin-top: -390px;
+    margin-left: 1150px;
+    display: block;
 }
 
 #menuRelative {
@@ -154,13 +156,13 @@ body {
     height: 30px;
     width: 100px;
     margin-top: -30px;
-    margin-left: 1300px;
-    display: block
+    margin-left: 1250px;
+    display: block;
 }
 
 .bar{ 
     margin-top: 0px;
-    margin-left: 80px;
+    margin-left: 130px;
     position: absolute;
     border-radius: 0;
 
@@ -180,11 +182,27 @@ body {
 #yearView {
     position: absolute;
     top: 720px;
-    left: 30px;
+    left: 80px;
     display:inline-flex;
 }
 
+.age {
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 30px;
+    border: none;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    font-size: 16px;
+    font-family: 'Barlow', sans-serif;
+    text-align: center;
+}
 
-
+#ageView {
+    position: absolute;
+    top: 200px;
+    left: 30px;
+}
 
 

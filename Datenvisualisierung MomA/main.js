@@ -2,12 +2,16 @@
 //zT gibt es gender die groß und kleingeschrieben werden und es gibt non binory gender und welche ohne gender --> totalCount ist größer als female und male count zsm
 //Landgrößen stimmen nicht mit Maxima überein, da dot nur mit r definiert wird und nicht mit rF unf rM
 
-//Jahrzehnte unter Balken, Titel und Menu Balken
 //Kategorien sortieren
 //Legende?
 //relatives Balkendiagramm
 
 //Streudiagramm!
+// in artworkData: jedes Kunstwerk mit creationDate und birthYear des Künstlers
+//für jedes Jahrzehnt ausrechnen, wie alt Künstler waren, die in diesem Jahrzehnt ein Kunstwerk vervollständigt haben,
+//je mehr Künstler gleich alt waren zu dem Zeitpunkt, desto größer der Kreis,
+//Kreise (mit ausgerechnetem Alter) auf Skala links mappen
+//
 
 let stageWidth, stageHeight;
 let data;
@@ -20,6 +24,9 @@ let groupedCategories = {};
 // let femaleMapShow;
 // let maleMapShow;
 let currentScene = "total";
+let viewCount = 0;
+let backCount = 0;
+
 
 $(function () {
   stageWidth = $('#stage').innerWidth();
@@ -29,12 +36,11 @@ $(function () {
   setView("total");
   drawBarChart1();
   $('.bar').hide();
-  let title2 = document.getElementById("title2");
-  title2.parentNode.removeChild(title2);
-  let menu2 = document.getElementById("menuLabel2");
-  menu2.parentNode.removeChild(menu2);
-  let yearView = document.getElementById("yearView");
-  yearView.parentNode.removeChild(yearView);
+  $('#yearView').hide();
+  $('#title2').hide();
+  $('#menuLabel2').hide();
+  $('#backButton').hide();
+  $('#ageView').hide();
 });
 
 function prepareData() {
@@ -85,7 +91,7 @@ function prepareData() {
   let decadeData = gmynd.groupData(artworkData, ["decade"]);
 
   console.log(groupedCategories);
-
+  //let groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
 
   for (let decadeNumber in decadeData) {
     let decadeArray = decadeData[decadeNumber];
@@ -93,8 +99,10 @@ function prepareData() {
     //console.log(decadeArray);
     //console.log(cumulatedDecade);
     groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
+    //let groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
+
     // console.log(groupedCategories)
-    //  console.log(decadeNumber) 
+    console.log(decadeData) 
   }
 };
 
@@ -198,23 +206,70 @@ function setView(viewTitle) {
 
 };
 
-function nextView1() {
-  const countries = $('.country');
-  countries.removeClass();
-  let title1 = document.getElementById("title1");
-  title1.parentNode.removeChild(title1);
-  let menu = document.getElementById("menuLabel");
-  menu.parentNode.removeChild(menu);
-  $('.bar').fadeIn();
-  let title2 = document.getElementById("title2");
-  title2.parentNode.addChild(title2);
-  let menu2 = document.getElementById("menuLabel2");
-  menu2.parentNode.addChild(menu2);
-  let yearView = document.getElementById("yearView");
-  yearView.parentNode.addChild(yearView);
+function nextView() {
+  viewCount = viewCount +1 ;
+  console.log (viewCount);
+  if (viewCount === 1) {
+    const countries = $('.country');
+    countries.hide();
+    $('#title1').hide();
+    $('#menuLabel').hide();
+    $('.bar').fadeIn();
+    $('#title2').show();
+    $('#menuLabel2').show();
+    $('#yearView').show();
+    $('#backButton').show();
+   };
+ if (viewCount === 2) {
+    $('.bar').fadeOut();
+    $('#title2').hide();
+    $('#menuLabel2').hide();
+    $('#yearView').show();
+    //$('#nextButton').hide();
+    //$('#ageView').show();
+   };
 };
 
 
+function backView() {
+  backCount = backCount+1;
+  console.log(backCount);
+  if (viewCount === 1 && backCount === 1) {
+    const countries = $('.country');
+    countries.show();
+    $('#title1').show();
+    $('#menuLabel').show();
+    $('.bar').fadeOut();
+    $('#title2').hide();
+    $('#menuLabel2').hide();
+    $('#yearView').hide();
+    $('#backButton').hide();
+   };
+
+ if (viewCount === 2 && backCount === 1) {
+    // $('#title1').hide();
+    // $('#menuLabel').hide();
+    $('.bar').fadeIn();
+    $('#title2').show();
+    $('#menuLabel2').show();
+    $('#yearView').show();
+    //$('#ageView').hide();
+   };
+
+  if (viewCount === 2 && backCount === 2) {
+    $('.country').show();
+    $('#title1').show();
+    $('#menuLabel').show();
+    $('.bar').fadeOut();
+    $('#title2').hide();
+    $('#menuLabel2').hide();
+    $('#yearView').hide();
+    //$('#ageView').hide();
+    $('#backButton').hide();
+    
+
+   };
+};
 
 
 
@@ -242,14 +297,14 @@ function drawBarChart1() {
       category = gmynd.addPropPercentage(category, "count");
       let total = gmynd.dataSum(category, "count");
       //console.log(total);
-      // let decMax = gmynd.dataMax(category, "count");
-      // console.log(decMax);
-      let h = gmynd.map(total, 0, 500, 0, 100, true);
+      let Max = gmynd.dataMax(category, "countPercentage");
+      //console.log(Max);
+      let h = gmynd.map(total, 0, Max, 0, 80, true);
       blockY -= h;
 
       let currentBoxX = 0;
       gmynd.sortData(category, 'simpleGender');
-      console.log(category)
+      //console.log(category)
       category.forEach((gender, i) => {
 
         let color = "black";
