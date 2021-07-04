@@ -6,12 +6,6 @@
 //Legende?
 //relatives Balkendiagramm
 
-//Streudiagramm!
-// in artworkData: jedes Kunstwerk mit creationDate und birthYear des Künstlers
-//für jedes Jahrzehnt ausrechnen, wie alt Künstler waren, die in diesem Jahrzehnt ein Kunstwerk vervollständigt haben,
-//je mehr Künstler gleich alt waren zu dem Zeitpunkt, desto größer der Kreis,
-//Kreise (mit ausgerechnetem Alter) auf Skala links mappen
-//
 
 let stageWidth, stageHeight;
 let data;
@@ -41,6 +35,7 @@ $(function () {
   $('#menuLabel2').hide();
   $('#backButton').hide();
   $('#ageView').hide();
+  //$('#overlay').hide();
 });
 
 function prepareData() {
@@ -90,8 +85,8 @@ function prepareData() {
   });
   let decadeData = gmynd.groupData(artworkData, ["decade"]);
 
-  console.log(groupedCategories);
-  //let groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
+  //console.log(groupedCategories);
+
 
   for (let decadeNumber in decadeData) {
     let decadeArray = decadeData[decadeNumber];
@@ -99,11 +94,10 @@ function prepareData() {
     //console.log(decadeArray);
     //console.log(cumulatedDecade);
     groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
-    //let groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
-
-    // console.log(groupedCategories)
-    console.log(decadeData) 
+    //groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
+    console.log(groupedCategories) 
   }
+  console.log(decadeData)
 };
 
 function createDots() {
@@ -207,7 +201,7 @@ function setView(viewTitle) {
 };
 
 function nextView() {
-  viewCount = viewCount +1 ;
+  viewCount = viewCount + 1 ;
   console.log (viewCount);
   if (viewCount === 1) {
     const countries = $('.country');
@@ -225,8 +219,9 @@ function nextView() {
     $('#title2').hide();
     $('#menuLabel2').hide();
     $('#yearView').show();
+    //$('#overlay').show();
     //$('#nextButton').hide();
-    //$('#ageView').show();
+    $('#ageView').fadeIn();
    };
 };
 
@@ -253,7 +248,7 @@ function backView() {
     $('#title2').show();
     $('#menuLabel2').show();
     $('#yearView').show();
-    //$('#ageView').hide();
+    $('#ageView').fadeOut();
    };
 
   if (viewCount === 2 && backCount === 2) {
@@ -264,7 +259,7 @@ function backView() {
     $('#title2').hide();
     $('#menuLabel2').hide();
     $('#yearView').hide();
-    //$('#ageView').hide();
+    $('#ageView').fadeOut();
     $('#backButton').hide();
     
 
@@ -327,47 +322,34 @@ function drawBarChart1() {
     }
     barNo++;
   }
-}
-/* artworkData.forEach(artwork=> {
-    artwork.decade = Math.floor((parseInt(artwork.dateAcquired)-1920)/10)*10 + 1920;
-    
-    // calculate simplified gender
-    let genders = artwork.gender.split(" ");
-    if (genders.length == 1) {
-      if (genders[0] == "(Male)") {
-        artwork.simpleGender = 'male';
-      } else if (genders[0] == "(Female)") {
-        artwork.simpleGender = 'female';
-      } else {
-        artwork.simpleGender = 'unknown';
-      }
-    } else {
-      artwork.simpleGender = 'group';
-    }
-  });
-  let decadeData = gmynd.groupData(artworkData,  ["decade"]);
-  //console.log(decadeData);
+};
 
-decadeData.forEach((year) => {
-          console.log(year);
-          let h = 100 
-          let w =  50 
-          let x = 80;
-          let y = stageHeight;
-    
-          
-          let twenties = $('<div></div>');
-          twenties.addClass("year20s");
-          twenties.css({
-              "background-color": "#2D5376",
-              "position": "absolute",
-              height: h,
-              width: w,
-              left: x,
-              top: y,
-              "border-radius": 0,
-          });
-          $('#stage').append(twenties);
-          });
-      };
- */
+
+//Streudiagramm!
+// in artworkData: jedes Kunstwerk mit creationDate und birthYear des Künstlers
+//für jedes Jahrzehnt ausrechnen, wie alt Künstler waren, die in diesem Jahrzehnt ein Kunstwerk vervollständigt haben,
+//je mehr Künstler gleich alt waren zu dem Zeitpunkt, desto größer der Kreis,
+//Kreise (mit ausgerechnetem Alter) auf Skala links mappen
+// in decadeData sortiert nach Jahrzehnten
+// in jedem Jahrzehnt ausrechenen wie alt Künstler waren
+
+
+// function drawScatter{
+//   for (let decade in decadeData) {
+//     let deace = decadeData[decade];
+// let i = decadeData.array
+//     age = decadeData.birthYear - decadeData.creationDate;
+//     console.log(age);
+
+
+    // let calculations = [
+    //   {'value':'birthYear', 'method':'Average', 'title':'age'},   
+    //   {'value':'Weight', 'method':'Min'},
+    //   {'value':'Weight', 'method':'Max'},
+    // ]
+    // let cumulatedSuperheroes = gmynd.cumulateData(res, ["Gender", "Alignment"], calculations)
+//   };
+// }
+
+
+

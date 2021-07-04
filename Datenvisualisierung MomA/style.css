@@ -122,7 +122,17 @@ body {
 .button {
     margin-top: -360px;
     margin-left: 1400px;
+    /* z-index:1 */
 }
+
+/* #overlay{
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: 1400px;
+    z-index:2
+} */
 
  #backButton {
     margin-top: 0px;
@@ -189,11 +199,11 @@ body {
 .age {
     background-color: white;
     color: black;
-    width: 50px;
+    width: 10px;
     height: 30px;
     border: none;
     margin-bottom: 20px;
-    margin-left: 50px;
+    margin-left: 10px;
     font-size: 16px;
     font-family: 'Barlow', sans-serif;
     text-align: center;
@@ -201,8 +211,9 @@ body {
 
 #ageView {
     position: absolute;
-    top: 200px;
-    left: 30px;
+    top: 240px;
+    left: 80px;
 }
+
 
 
