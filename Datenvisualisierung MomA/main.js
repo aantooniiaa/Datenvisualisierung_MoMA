@@ -95,10 +95,21 @@ function prepareData() {
     //console.log(cumulatedDecade);
     groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
     //groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
-    console.log(groupedCategories) 
-  }
-  console.log(decadeData)
-};
+    //console.log(groupedCategories) 
+  };
+
+  // //Alter wird ausgerechnet
+  // for (let art in artworkData) {
+  //   let artist = artworkData[art];
+  //   const birth = artist.birthYear;
+  //   const creation = artist.creationDate;
+  //   let age = gmynd.duration(birth, creation);
+  //   age = age / 31536000000;
+  //   age = Math.floor(age)
+  //   //console.log(age);
+  // };
+
+ };
 
 function createDots() {
 
