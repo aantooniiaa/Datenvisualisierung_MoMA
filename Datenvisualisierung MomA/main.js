@@ -36,6 +36,8 @@ $(function () {
   $('#backButton').hide();
   $('#ageView').hide();
   //$('#overlay').hide();
+  drawScatter();
+  $('.age').hide();
 });
 
 function prepareData() {
@@ -87,6 +89,32 @@ function prepareData() {
 
   //console.log(groupedCategories);
 
+  //sort categories
+  let category = artworkData.category
+      if (category == "(Architecture & Design)") {
+        artworkData.sortedCategory = 0;
+      };
+     if (category == "(Painting & Sculpture)") {
+        artworkData.sortedCategory = 1;
+      };
+    if (category == "(Drawings & Prints)") {
+        artworkData.sortedCategory = 2;
+      };
+    if (category == "(Photography)") {
+        artworkData.sortedCategory = 3;
+      };
+    if (category == "(Media and Performance)") {
+        artworkData.sortedCategory = 4;
+      };
+    if (category == "(Film)") {
+        artworkData.sortedCategory = 5;
+      };
+    if (category == "(  )") {
+        artworkData.sortedCategory = 6;
+      };
+
+
+
 
   for (let decadeNumber in decadeData) {
     let decadeArray = decadeData[decadeNumber];
@@ -99,15 +127,18 @@ function prepareData() {
   };
 
   // //Alter wird ausgerechnet
-  // for (let art in artworkData) {
-  //   let artist = artworkData[art];
-  //   const birth = artist.birthYear;
-  //   const creation = artist.creationDate;
-  //   let age = gmynd.duration(birth, creation);
-  //   age = age / 31536000000;
-  //   age = Math.floor(age)
-  //   //console.log(age);
-  // };
+  for (let art in artworkData) {
+    let artist = artworkData[art];
+    const birth = artist.birthYear;
+    const creation = artist.creationDate;
+    let age = gmynd.duration(birth, creation);
+    age = age / 31536000000;
+    age = Math.floor(age)
+    //console.log(age);
+   artist.age = age;
+  };
+
+  console.log(artworkData)
 
  };
 
@@ -213,7 +244,7 @@ function setView(viewTitle) {
 
 function nextView() {
   viewCount = viewCount + 1 ;
-  console.log (viewCount);
+  //console.log (viewCount);
   if (viewCount === 1) {
     const countries = $('.country');
     countries.hide();
@@ -233,13 +264,14 @@ function nextView() {
     //$('#overlay').show();
     //$('#nextButton').hide();
     $('#ageView').fadeIn();
+    $('.age').show();
    };
 };
 
 
 function backView() {
   backCount = backCount+1;
-  console.log(backCount);
+  //console.log(backCount);
   if (viewCount === 1 && backCount === 1) {
     const countries = $('.country');
     countries.show();
@@ -278,17 +310,18 @@ function backView() {
 };
 
 
-
 const boxColors = {
   "Architecture & Design": "#81BCE4",
   "Painting & Sculpture": "#7DE8AA",
   "Drawings & Prints": "#81E4D1",
   "Photography": "#F08175",
-  "Media & Performance": "#F7AE6E",
+  "Media and Performance": "F7AE6E",
   "Film": "#FFE166",
+  "  ": "#E2E0E5"
 };
 
 function drawBarChart1() {
+  let decadeData = gmynd.groupData(artworkData, ["decade"]);
   const barWidth = 50;
   let barNo = 0;
   for (let dec in groupedCategories) {
@@ -335,32 +368,50 @@ function drawBarChart1() {
   }
 };
 
+console.log(groupedCategories);
 
 //Streudiagramm!
-// in artworkData: jedes Kunstwerk mit creationDate und birthYear des Künstlers
 //für jedes Jahrzehnt ausrechnen, wie alt Künstler waren, die in diesem Jahrzehnt ein Kunstwerk vervollständigt haben,
 //je mehr Künstler gleich alt waren zu dem Zeitpunkt, desto größer der Kreis,
 //Kreise (mit ausgerechnetem Alter) auf Skala links mappen
-// in decadeData sortiert nach Jahrzehnten
-// in jedem Jahrzehnt ausrechenen wie alt Künstler waren
 
 
-// function drawScatter{
-//   for (let decade in decadeData) {
-//     let deace = decadeData[decade];
-// let i = decadeData.array
-//     age = decadeData.birthYear - decadeData.creationDate;
-//     console.log(age);
+function drawScatter() {
+let maxAge = gmynd.dataMax(artworkData, "age");
+let maxDecade = gmynd.dataMax(artworkData, "decade");
 
+artworkData.forEach(position => {
+  let xPos = gmynd.map(position.deacade, 0, maxDecade, 0, 50);
+  let yPos = gmynd.map(position.age, 0, maxAge, 0, 100);
+  const areaAge = gmynd.map(artworkData.age, 0, maxAge, 10, 100);
+  const r = gmynd.circleRadius(areaAge);
 
-    // let calculations = [
-    //   {'value':'birthYear', 'method':'Average', 'title':'age'},   
-    //   {'value':'Weight', 'method':'Min'},
-    //   {'value':'Weight', 'method':'Max'},
-    // ]
-    // let cumulatedSuperheroes = gmynd.cumulateData(res, ["Gender", "Alignment"], calculations)
-//   };
-// }
+ let ageDot = $('<div></div>');
+ ageDot.addClass("age")
+ ageDot.css({
+  'height': r,
+  'width': r,
+  'left': xPos-r / 2,
+  'top': yPos-r / 2 + stageHeight / 2,
+ });
+
+ $('#stage').append(ageDot);
+
+});
+
+// const areaAge = gmynd.map(artworkData.age, 0, maxAge, 10, 100);
+// const r = gmynd.circleRadius(areaAge);
+
+// let ageDot = $('<div></div>');
+// ageDot.addClass("age")
+// ageDot.css({
+//   'height': r,
+//   'width': r,
+//   'left': xPos,
+//   'top': yPos,
+// });
+
+};
 
 
 
