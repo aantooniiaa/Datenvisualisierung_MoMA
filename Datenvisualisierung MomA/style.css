@@ -13,36 +13,50 @@ body {
 #stage {
     width: 1280px;
     height: 720px;
-    margin-top: 50px;
+    margin-top: 90px;
     margin-left: 80px;
     background-color: white;
 }
 
-/* #titleLabel {
-    background-color: white;
-    height: 30px;
-    width: 300px;
-    margin-top: -700px;
-    margin-left: 80px;
-    position: absolute;
-    display: block;
-    text-decoration: underline;
-} */
 
 #title1 {
     background-color: white;
     height: 30px;
     width: 300px;
-    margin-top: -700px;
+    margin-top: -750px;
     margin-left: 80px;
     position: absolute;
     display: block;
     text-decoration: underline;
     /* z-index: 2; */
-
+}
+#title2 {
+    background-color: white;
+    height: 30px;
+    width: 300px;
+    margin-top: -750px;
+    margin-left: 80px;
+    position: absolute;
+    display: block;
+    text-decoration: underline;
+    /* z-index: 2; */
 }
 
-#menuLabel {
+#title3 {
+    background-color: white;
+    height: 30px;
+    width: 300px;
+    margin-top: -750px;
+    margin-left: 80px;
+    position: absolute;
+    display: block;
+    text-decoration: underline;
+    /* z-index: 2; */
+}
+
+
+
+/* #menuLabel {
     background-color: white;
     height: 30px;
     width: 300px;
@@ -50,15 +64,15 @@ body {
     margin-left: 1050px;
     position: absolute;
     display: flex;
-}
+} */
 
 
 #menuAll {
     background-color: white;
     height: 30px;
     width: 100px;
-    margin-top: 0px;
-    margin-left: 100px;
+    margin-top: -750px;
+    margin-left: 1010px;
     display: block
 }
 
@@ -66,8 +80,8 @@ body {
     background-color: white;
     height: 30px;
     width: 150px;
-    margin-top: 0px;
-    margin-left: 0px;
+    margin-top: -30px;
+    margin-left: 1110px;
     display: block
 
 }
@@ -76,17 +90,35 @@ body {
     background-color: white;
     height: 30px;
     width: 100px;
-    margin-top: 0px;
-    margin-left: 0px;
+    margin-top: -30px;
+    margin-left: 1260px;
     display: block
 
+}
+
+#menuFemale2 {
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    margin-top: -370px;
+    margin-left: 1150px;
+    display: block;
+}
+
+#menuMale2 {
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    margin-top: -30px;
+    margin-left: 1250px;
+    display: block;
 }
 
 #hoverLabel {
     background-color: white;
     height: 20px;
     width: 500px;
-    margin-top: 300px;
+    margin-top: 720px;
     margin-left: 80px;
     position: absolute
 }
@@ -134,41 +166,35 @@ body {
     z-index:2
 } */
 
- #backButton {
-    margin-top: 0px;
-    margin-left: 40px;
-    height: 30px;
-}
-
-#title2 {
+/* #title2 {
     background-color: white;
     height: 30px;
     width: 200px;
-    margin-top: -390px;
+    margin-top: -370px;
     margin-left: 80px;
     position: absolute;
     display: block;
     text-decoration: underline;
-    /* z-index: 1; */
-}
+    z-index: 1; 
+ }
 
 #title3 {
     background-color: white;
     height: 30px;
     width: 250px;
-    margin-top: -390px;
+    margin-top: -370px;
     margin-left: 80px;
     position: absolute;
     display: block;
     text-decoration: underline;
-    /* z-index: 1; */
-}
+    z-index: 1; 
+} */
 
-#menuFemale2 {
+/* #menuFemale2 {
     background-color: white;
     height: 30px;
     width: 100px;
-    margin-top: -390px;
+    margin-top: -370px;
     margin-left: 1150px;
     display: block;
 }
@@ -180,14 +206,14 @@ body {
     margin-top: -30px;
     margin-left: 1250px;
     display: block;
-}
+} */
 
-.bar{ 
-    margin-top: 0px;
-    margin-left: 130px;
+
+#yearView {
     position: absolute;
-    border-radius: 0;
-
+    top: 750px;
+    left: 80px;
+    display:inline-flex;
 }
 
 .years {
@@ -201,11 +227,10 @@ body {
     font-family: 'Barlow', sans-serif;
 }
 
-#yearView {
+#ageView {
     position: absolute;
-    top: 720px;
+    top: 250px;
     left: 80px;
-    display:inline-flex;
 }
 
 .age {
@@ -221,10 +246,25 @@ body {
     text-align: center;
 }
 
-#ageView {
+#nextButton {
+    margin-top: 360px;
+    margin-left: 1360px;
+    height: 0px;
+    font-size: 50px;
+}
+
+ #backButton {
+    margin-top: 0px;
+    margin-left: 50px;
+    height: 30px;
+    font-size: 50px;
+}
+
+.bar{ 
+    margin-top: 0px;
+    margin-left: 130px;
     position: absolute;
-    top: 240px;
-    left: 80px;
+    border-radius: 0;
 }
 
 .ageDots{

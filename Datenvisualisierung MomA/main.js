@@ -33,7 +33,7 @@ $(function () {
   $('#menuLabel3').hide();
   $('#backButton').hide();
   $('#ageView').hide();
-  //$('#overlay').hide();
+  // $('#overlay').hide();
   drawScatter();
   $('.ageDots').hide();
 });
@@ -253,6 +253,7 @@ function nextView() {
     $('#title2').show();
     $('#yearView').show();
     $('#backButton').show();
+    $('#hoverLabel').hide();
    };
  if (viewCount === 2) {
     $('.bar').fadeOut();
@@ -261,7 +262,7 @@ function nextView() {
     $('#menuLabel2').hide();
     $('#menuLabel3').show();
     $('#yearView').show();
-    //$('#overlay').show();
+    // $('#overlay').show();
     //$('#nextButton').hide();
     $('#ageView').fadeIn();
     $('.age').show();
@@ -283,6 +284,9 @@ function backView() {
     $('#menuLabel2').hide();
     $('#yearView').hide();
     $('#backButton').hide();
+    $('#menuLabel3').hide();
+    $('#title3').hide();
+    $('.ageDots').hide();
    };
 
  if (viewCount === 2 && backCount === 1) {
@@ -293,6 +297,9 @@ function backView() {
     $('#menuLabel2').show();
     $('#yearView').show();
     $('#ageView').fadeOut();
+    $('.ageDots').hide();
+    $('#menuLabel3').hide();
+    $('#title3').hide();
    };
 
   if (viewCount === 2 && backCount === 2) {
@@ -305,8 +312,9 @@ function backView() {
     $('#yearView').hide();
     $('#ageView').fadeOut();
     $('#backButton').hide();
-    
-
+    $('.ageDots').hide();
+    $('#menuLabel3').hide();
+    $('#title3').hide();
    };
 };
 
@@ -379,24 +387,24 @@ console.log(groupedCategories);
 
 function drawScatter() {
 let maxAge = gmynd.dataMax(artworkData, "age");
+let minAge = gmynd.dataMin(artworkData, "age");
 let maxDecade = gmynd.dataMax(artworkData, "decade");
+let minDecade = gmynd.dataMin(artworkData, "decade");
 cumulatedAge = gmynd.cumulateData(artworkData, ["decade", "age"])
-console.log(cumulatedAge)
+console.log(artworkData)
 
 cumulatedAge.forEach(position => {
- console.log(position);
+ console.log(cumulatedAge);
 
-//  dotMax = gmynd.dataMax(position, "count");
-//  console.log(dotMax)
- let xPos = gmynd.map(position.decade, 0, maxDecade, 0, stageWidth);
- let yPos = gmynd.map(position.age, 0, maxAge, 0, stageHeight);
-//  const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
-//  const r = gmynd.circleRadius(areaAge); 
+ let xPos = gmynd.map(position.decade, minDecade, maxDecade, 80, 1360);
+ let yPos = gmynd.map(position.age, minAge, maxAge, stageHeight, 300);
+ //const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
+ let r = position.count / 100;
  let ageDot = $('<div></div>');
  ageDot.addClass("ageDots");
  ageDot.css({
-     'height': "10px",
-     'width': "10px",
+     'height': r,
+     'width': r,
      'left': xPos,
      'top': yPos,
     });

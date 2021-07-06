@@ -11,22 +11,24 @@
 
 <body>
     <div id="stage"></div>
-        <div id="title1">artists - nationality </div>
+        <div id="title1" class=title>artists - nationality </div>
+        <div id="title2" class=title>aquired artworks </div>
+        <div id="title3" class=titel>age of the artists and artworks </div>
     <div id="menuLabel">
         <div id="menuAll" onclick = "setView('total')">all</div>
         <div id="menuFemale" onclick = "setView('women')" >female</div>
         <div id="menuMale" onclick = "setView('men')" >male</div>
-    </div>
-    <div id= "nextButton" class = "button" onclick = "nextView()" >&#187; </div> 
-    <div id="overlay"></div>
-    <div id="hoverLabel"></div>
-    <div id= "backButton" class = "button" onclick = "backView()" >&#171;</div>
-    <div id="title2">aquired artworks </div>
-    <div id="title3">age of the artists and artworks </div>
-    <div id="menuLabel3">
         <div id="menuFemale2" onclick = "setView('femaleView')">female</div>
         <div id="menuMale2" onclick = "setView('maleView')" >male</div>
     </div>
+    <!-- <div id="overlay"></div> -->
+    <div id="hoverLabel"></div>
+    <!-- <div id="title2">aquired artworks </div>
+    <div id="title3">age of the artists and artworks </div>  -->
+    <!-- <div id="menuLabel3">
+        <div id="menuFemale2" onclick = "setView('femaleView')">female</div>
+        <div id="menuMale2" onclick = "setView('maleView')" >male</div>
+    </div>  -->
     <div id = "yearView">
         <button class= "years" >1920</button> <br>
         <button class= "years" >1930</button> <br>
@@ -55,7 +57,8 @@
         <button class= "age" >–</button> <br>
         </div>
 
-<!--     <div id= "nextButton2" class = "button" onclick = "nextView2()" >></div>  -->
+        <div id= "nextButton" class = "button" onclick = "nextView()" >&#187; </div> 
+        <div id= "backButton" class = "button" onclick = "backView()" >&#171;</div>
 
     <script src="lib/jquery-3.6.0.min.js"></script> 
 <!--     <script src="lib/gmynd.js"></script>  -->
