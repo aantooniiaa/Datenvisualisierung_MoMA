@@ -215,5 +215,12 @@ body {
     left: 80px;
 }
 
+.ageDots{
+    background-color: purple;
+    position: absolute;
+    display: inline-flex;
+    border-radius: 100%;
+}
+
 
 

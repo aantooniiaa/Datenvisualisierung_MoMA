@@ -37,7 +37,7 @@ $(function () {
   $('#ageView').hide();
   //$('#overlay').hide();
   drawScatter();
-  $('.age').hide();
+  $('.ageDots').hide();
 });
 
 function prepareData() {
@@ -265,6 +265,7 @@ function nextView() {
     //$('#nextButton').hide();
     $('#ageView').fadeIn();
     $('.age').show();
+    $('.ageDots').show();
    };
 };
 
@@ -371,45 +372,49 @@ function drawBarChart1() {
 console.log(groupedCategories);
 
 //Streudiagramm!
-//für jedes Jahrzehnt ausrechnen, wie alt Künstler waren, die in diesem Jahrzehnt ein Kunstwerk vervollständigt haben,
-//je mehr Künstler gleich alt waren zu dem Zeitpunkt, desto größer der Kreis,
+//künstler nach alter in jahrzehnten gruppieren -> eine gruppe ist ein kreis
+//je größer die gruppe, desto größer der Kreis,
 //Kreise (mit ausgerechnetem Alter) auf Skala links mappen
 
 
 function drawScatter() {
 let maxAge = gmynd.dataMax(artworkData, "age");
 let maxDecade = gmynd.dataMax(artworkData, "decade");
+cumulatedAge = gmynd.cumulateData(artworkData, ["decade", "age"])
+console.log(cumulatedAge)
 
-artworkData.forEach(position => {
-  let xPos = gmynd.map(position.deacade, 0, maxDecade, 0, 50);
-  let yPos = gmynd.map(position.age, 0, maxAge, 0, 100);
-  const areaAge = gmynd.map(artworkData.age, 0, maxAge, 10, 100);
-  const r = gmynd.circleRadius(areaAge);
+cumulatedAge.forEach(position => {
+ console.log(position);
 
+//  dotMax = gmynd.dataMax(position, "count");
+//  console.log(dotMax)
+ let xPos = gmynd.map(position.decade, 0, maxDecade, 0, stageWidth);
+ let yPos = gmynd.map(position.age, 0, maxAge, 0, stageHeight);
+//  const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
+//  const r = gmynd.circleRadius(areaAge); 
  let ageDot = $('<div></div>');
- ageDot.addClass("age")
+ ageDot.addClass("ageDots");
  ageDot.css({
-  'height': r,
-  'width': r,
-  'left': xPos-r / 2,
-  'top': yPos-r / 2 + stageHeight / 2,
- });
+     'height': "10px",
+     'width': "10px",
+     'left': xPos,
+     'top': yPos,
+    });
+    $('#stage').append(ageDot);
 
- $('#stage').append(ageDot);
+//  for (let group in position) {
+//   dotMax = gmynd.dataMax(group, "count");
+//   console.log(dotMax); 
 
+//   let xPos = gmynd.map(position.group, 0, maxAge, 0, stageWidth);
+//   let yPos = gmynd.map(position.group, 0, maxDecade, 0, stageHeight);
+//   const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
+//   const r = gmynd.circleRadius(areaAge); 
+//   };
+
+ //dotMax = gmynd.dataMax(position, "count");
+ //console.log(dotMax);
 });
-
-// const areaAge = gmynd.map(artworkData.age, 0, maxAge, 10, 100);
-// const r = gmynd.circleRadius(areaAge);
-
-// let ageDot = $('<div></div>');
-// ageDot.addClass("age")
-// ageDot.css({
-//   'height': r,
-//   'width': r,
-//   'left': xPos,
-//   'top': yPos,
-// });
 
 };
 
