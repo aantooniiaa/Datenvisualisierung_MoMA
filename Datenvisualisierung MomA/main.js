@@ -14,9 +14,6 @@ let womenCountries;
 let menCountries;
 let decadeData;
 let groupedCategories = {};
-// let totalMapShow;
-// let femaleMapShow;
-// let maleMapShow;
 let currentScene = "total";
 let viewCount = 0;
 let backCount = 0;
@@ -32,7 +29,8 @@ $(function () {
   $('.bar').hide();
   $('#yearView').hide();
   $('#title2').hide();
-  $('#menuLabel2').hide();
+  $('#title3').hide();
+  $('#menuLabel3').hide();
   $('#backButton').hide();
   $('#ageView').hide();
   //$('#overlay').hide();
@@ -85,35 +83,36 @@ function prepareData() {
       artwork.simpleGender = 1;
     }
   });
+
   let decadeData = gmynd.groupData(artworkData, ["decade"]);
 
   //console.log(groupedCategories);
 
   //sort categories
   let category = artworkData.category
-      if (category == "(Architecture & Design)") {
-        artworkData.sortedCategory = 0;
-      };
-     if (category == "(Painting & Sculpture)") {
-        artworkData.sortedCategory = 1;
-      };
-    if (category == "(Drawings & Prints)") {
-        artworkData.sortedCategory = 2;
-      };
-    if (category == "(Photography)") {
-        artworkData.sortedCategory = 3;
-      };
-    if (category == "(Media and Performance)") {
-        artworkData.sortedCategory = 4;
-      };
-    if (category == "(Film)") {
-        artworkData.sortedCategory = 5;
-      };
-    if (category == "(  )") {
-        artworkData.sortedCategory = 6;
-      };
+  if (category == "(Architecture & Design)") {
+    artworkData.sortedCategory = 0;
+  };
+ if (category == "(Painting & Sculpture)") {
+    artworkData.sortedCategory = 1;
+  };
+if (category == "(Drawings & Prints)") {
+    artworkData.sortedCategory = 2;
+  };
+if (category == "(Photography)") {
+    artworkData.sortedCategory = 3;
+  };
+if (category == "(Media and Performance)") {
+    artworkData.sortedCategory = 4;
+  };
+if (category == "(Film)") {
+    artworkData.sortedCategory = 5;
+  };
+if (category == "(  )") {
+    artworkData.sortedCategory = 6;
+  };
 
-
+//console.log(artworkData);
 
 
   for (let decadeNumber in decadeData) {
@@ -252,14 +251,15 @@ function nextView() {
     $('#menuLabel').hide();
     $('.bar').fadeIn();
     $('#title2').show();
-    $('#menuLabel2').show();
     $('#yearView').show();
     $('#backButton').show();
    };
  if (viewCount === 2) {
     $('.bar').fadeOut();
     $('#title2').hide();
+    $('#title3').show();
     $('#menuLabel2').hide();
+    $('#menuLabel3').show();
     $('#yearView').show();
     //$('#overlay').show();
     //$('#nextButton').hide();
