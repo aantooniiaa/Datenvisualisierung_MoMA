@@ -3,124 +3,75 @@
 }
 
 body {
-    margin: 0;
+    margin: 0px;
     background-color: white;
     color: black;
     font-family: 'Barlow', sans-serif;
+    padding-top: 20px;
+}
+
+.header  {
+    min-height: 30px;
+    padding-left: 5%;
+}
+
+.button {
+    font-size: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+#backButton {
+    margin-right: 1%;
+}
+
+#nextButton {
+    margin-left: 1%;
+}
+
+.contentContainer {
+    justify-content: center;
+    display: flex;
 }
 
 
 #stage {
+    position: relative;
     width: 1280px;
     height: 720px;
-    margin-top: 90px;
-    margin-left: 80px;
     background-color: white;
 }
 
 
-#title1 {
+.title {
     background-color: white;
     height: 30px;
     width: 300px;
-    margin-top: -750px;
-    margin-left: 80px;
-    position: absolute;
-    display: block;
     text-decoration: underline;
-    /* z-index: 2; */
-}
-#title2 {
-    background-color: white;
-    height: 30px;
-    width: 300px;
-    margin-top: -750px;
-    margin-left: 80px;
-    position: absolute;
-    display: block;
-    text-decoration: underline;
-    /* z-index: 2; */
-}
-
-#title3 {
-    background-color: white;
-    height: 30px;
-    width: 300px;
-    margin-top: -750px;
-    margin-left: 80px;
-    position: absolute;
-    display: block;
-    text-decoration: underline;
-    /* z-index: 2; */
+    
 }
 
 
 
-/* #menuLabel {
-    background-color: white;
-    height: 30px;
-    width: 300px;
-    margin-top: -700px;
-    margin-left: 1050px;
-    position: absolute;
-    display: flex;
-} */
+#menuLabel {
+    margin-left: 50%;
+} 
 
-
-#menuAll {
-    background-color: white;
-    height: 30px;
-    width: 100px;
-    margin-top: -750px;
-    margin-left: 1010px;
-    display: block
-}
-
-#menuFemale {
-    background-color: white;
+.menuItem {
     height: 30px;
     width: 150px;
-    margin-top: -30px;
-    margin-left: 1110px;
-    display: block
-
-}
-
-#menuMale {
-    background-color: white;
-    height: 30px;
-    width: 100px;
-    margin-top: -30px;
-    margin-left: 1260px;
-    display: block
-
-}
-
-#menuFemale2 {
-    background-color: white;
-    height: 30px;
-    width: 100px;
-    margin-top: -370px;
-    margin-left: 1150px;
-    display: block;
-}
-
-#menuMale2 {
-    background-color: white;
-    height: 30px;
-    width: 100px;
-    margin-top: -30px;
-    margin-left: 1250px;
-    display: block;
+    display: inline;
+    margin-left: 10px;
 }
 
 #hoverLabel {
     background-color: white;
     height: 20px;
     width: 500px;
-    margin-top: 720px;
-    margin-left: 80px;
-    position: absolute
 }
 
 .country {
@@ -151,72 +102,27 @@ body {
     background-color: rgba(110, 56, 148, 0.7);
 }
 
-.button {
-    margin-top: -360px;
-    margin-left: 1400px;
-    /* z-index:1 */
+
+.leftFloat {
+    float: left;
 }
-
-/* #overlay{
-    background-color: white;
-    width: 20px;
-    height: 20px;
-    margin-top: -20px;
-    margin-left: 1400px;
-    z-index:2
-} */
-
-/* #title2 {
-    background-color: white;
-    height: 30px;
-    width: 200px;
-    margin-top: -370px;
-    margin-left: 80px;
-    position: absolute;
-    display: block;
-    text-decoration: underline;
-    z-index: 1; 
- }
-
-#title3 {
-    background-color: white;
-    height: 30px;
-    width: 250px;
-    margin-top: -370px;
-    margin-left: 80px;
-    position: absolute;
-    display: block;
-    text-decoration: underline;
-    z-index: 1; 
-} */
-
-/* #menuFemale2 {
-    background-color: white;
-    height: 30px;
-    width: 100px;
-    margin-top: -370px;
-    margin-left: 1150px;
-    display: block;
-}
-
-#menuMale2 {
-    background-color: white;
-    height: 30px;
-    width: 100px;
-    margin-top: -30px;
-    margin-left: 1250px;
-    display: block;
-} */
 
 
 #yearView {
-    position: absolute;
-    top: 750px;
-    left: 80px;
+    margin-left: 80px;
     display:inline-flex;
+
 }
 
-.years {
+#yearView2 {
+    margin-left: 80px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 1280px;
+}
+
+ .years {
     background-color: white;
     color: black;
     width: 50px;
@@ -225,40 +131,35 @@ body {
     margin-left: 50px;
     font-size: 16px;
     font-family: 'Barlow', sans-serif;
+} 
+
+
+
+.years2 {
+    background-color: white;
+    color: black;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-family: 'Barlow', sans-serif;
 }
 
 #ageView {
-    position: absolute;
-    top: 250px;
-    left: 80px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .age {
     background-color: white;
     color: black;
-    width: 10px;
-    height: 30px;
     border: none;
-    margin-bottom: 20px;
-    margin-left: 10px;
     font-size: 16px;
     font-family: 'Barlow', sans-serif;
     text-align: center;
 }
 
-#nextButton {
-    margin-top: 360px;
-    margin-left: 1360px;
-    height: 0px;
-    font-size: 50px;
-}
-
- #backButton {
-    margin-top: 0px;
-    margin-left: 50px;
-    height: 30px;
-    font-size: 50px;
-}
 
 .bar{ 
     margin-top: 0px;

@@ -16,7 +16,6 @@ let decadeData;
 let groupedCategories = {};
 let currentScene = "total";
 let viewCount = 0;
-let backCount = 0;
 
 
 $(function () {
@@ -28,6 +27,7 @@ $(function () {
   drawBarChart1();
   $('.bar').hide();
   $('#yearView').hide();
+  $('#yearView2').hide();
   $('#title2').hide();
   $('#title3').hide();
   $('#menuLabel3').hide();
@@ -36,6 +36,7 @@ $(function () {
   // $('#overlay').hide();
   drawScatter();
   $('.ageDots').hide();
+
 });
 
 function prepareData() {
@@ -86,7 +87,17 @@ function prepareData() {
 
   let decadeData = gmynd.groupData(artworkData, ["decade"]);
 
-  //console.log(groupedCategories);
+  //console.log(artworkData)
+  // let creationMin = gmynd.dataMin(artworkData, "creationDate")
+  // console.log(creationMin);
+
+  //creationDate in Jahrzehnte sortiert
+  artworkData.forEach(artwork => {
+    artwork.creationDecade = Math.floor((parseInt(artwork.creationDate) - 1760) / 10) * 10 + 1760;
+  });
+  //let decadeCreationData = gmynd.groupData(artworkData, ["creationDate"]);
+  console.log(artworkData)
+
 
   //sort categories
   let category = artworkData.category
@@ -137,7 +148,7 @@ if (category == "(  )") {
    artist.age = age;
   };
 
-  console.log(artworkData)
+  //console.log(artworkData)
 
  };
 
@@ -242,9 +253,11 @@ function setView(viewTitle) {
 };
 
 function nextView() {
-  viewCount = viewCount + 1 ;
   //console.log (viewCount);
-  if (viewCount === 1) {
+
+  
+  if (viewCount === 0) {
+    //Von Screen 0 auf Screen 1 wechseln
     const countries = $('.country');
     countries.hide();
     $('#title1').hide();
@@ -254,27 +267,29 @@ function nextView() {
     $('#yearView').show();
     $('#backButton').show();
     $('#hoverLabel').hide();
-   };
- if (viewCount === 2) {
+    viewCount = 1;
+   } else if (viewCount === 1) {
+    //Von Screen 1 auf Screen 2 wechseln
     $('.bar').fadeOut();
     $('#title2').hide();
     $('#title3').show();
     $('#menuLabel2').hide();
     $('#menuLabel3').show();
-    $('#yearView').show();
-    // $('#overlay').show();
-    //$('#nextButton').hide();
+    $('#yearView').hide();
+    $('#yearView2').show();
+    $('#nextButton').hide();
     $('#ageView').fadeIn();
     $('.age').show();
     $('.ageDots').show();
+    viewCount = 2;
    };
 };
 
 
 function backView() {
-  backCount = backCount+1;
   //console.log(backCount);
-  if (viewCount === 1 && backCount === 1) {
+  if (viewCount === 1) {
+    //Von Screen 1 in Screen 0 wechseln
     const countries = $('.country');
     countries.show();
     $('#title1').show();
@@ -287,9 +302,9 @@ function backView() {
     $('#menuLabel3').hide();
     $('#title3').hide();
     $('.ageDots').hide();
-   };
-
- if (viewCount === 2 && backCount === 1) {
+    viewCount = 0;
+   } else if (viewCount === 2) {
+    // Von Screen 2 in Screen 1 wechseln
     // $('#title1').hide();
     // $('#menuLabel').hide();
     $('.bar').fadeIn();
@@ -297,24 +312,11 @@ function backView() {
     $('#menuLabel2').show();
     $('#yearView').show();
     $('#ageView').fadeOut();
+    $('#nextButton').show();
     $('.ageDots').hide();
     $('#menuLabel3').hide();
     $('#title3').hide();
-   };
-
-  if (viewCount === 2 && backCount === 2) {
-    $('.country').show();
-    $('#title1').show();
-    $('#menuLabel').show();
-    $('.bar').fadeOut();
-    $('#title2').hide();
-    $('#menuLabel2').hide();
-    $('#yearView').hide();
-    $('#ageView').fadeOut();
-    $('#backButton').hide();
-    $('.ageDots').hide();
-    $('#menuLabel3').hide();
-    $('#title3').hide();
+    viewCount = 1;
    };
 };
 
@@ -377,7 +379,7 @@ function drawBarChart1() {
   }
 };
 
-console.log(groupedCategories);
+//console.log(groupedCategories);
 
 //Streudiagramm!
 //künstler nach alter in jahrzehnten gruppieren -> eine gruppe ist ein kreis
@@ -388,15 +390,17 @@ console.log(groupedCategories);
 function drawScatter() {
 let maxAge = gmynd.dataMax(artworkData, "age");
 let minAge = gmynd.dataMin(artworkData, "age");
-let maxDecade = gmynd.dataMax(artworkData, "decade");
-let minDecade = gmynd.dataMin(artworkData, "decade");
-cumulatedAge = gmynd.cumulateData(artworkData, ["decade", "age"])
-console.log(artworkData)
+let maxDecade = gmynd.dataMax(artworkData, "creationDecade");
+let minDecade = gmynd.dataMin(artworkData, "creationDecade");
+cumulatedAge = gmynd.cumulateData(artworkData, ["creationDecade", "age"])
+// console.log(cumulatedAge);
+//console.log(maxAge + " " + minAge + " " + " " + maxDecade + " " + minDecade)
+let stageBegin = $('#stage').position.left;
+let stageEnd = stageBegin + $('#stage').position.width;
 
 cumulatedAge.forEach(position => {
- console.log(cumulatedAge);
 
- let xPos = gmynd.map(position.decade, minDecade, maxDecade, 80, 1360);
+ let xPos = gmynd.map(position.creationDecade, minDecade, maxDecade, stageBegin, stageEnd);
  let yPos = gmynd.map(position.age, minAge, maxAge, stageHeight, 300);
  //const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
  let r = position.count / 100;
