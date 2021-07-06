@@ -298,6 +298,7 @@ function backView() {
     $('#title2').hide();
     $('#menuLabel2').hide();
     $('#yearView').hide();
+    $('#yearView2').hide();
     $('#backButton').hide();
     $('#menuLabel3').hide();
     $('#title3').hide();
@@ -312,6 +313,7 @@ function backView() {
     $('#menuLabel2').show();
     $('#yearView').show();
     $('#ageView').fadeOut();
+    $('#yearView2').hide();
     $('#nextButton').show();
     $('.ageDots').hide();
     $('#menuLabel3').hide();
@@ -397,19 +399,24 @@ cumulatedAge = gmynd.cumulateData(artworkData, ["creationDecade", "age"])
 //console.log(maxAge + " " + minAge + " " + " " + maxDecade + " " + minDecade)
 let stageBegin = $('#stage').position.left;
 let stageEnd = stageBegin + $('#stage').position.width;
+console.log(stageBegin + " " + stageEnd)
 
 cumulatedAge.forEach(position => {
+if (position.creationDecade < 1800 || isNaN(position.age)) {
+  console.log("skip " + position.creationDecade + " " + position.age)
+  return;
 
- let xPos = gmynd.map(position.creationDecade, minDecade, maxDecade, stageBegin, stageEnd);
- let yPos = gmynd.map(position.age, minAge, maxAge, stageHeight, 300);
+};
+ let xPos = gmynd.map(position.creationDecade, 1800, maxDecade, 0, 1280);
+ let yPos = gmynd.map(position.age, minAge, maxAge, stageHeight, 100);
  //const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
- let r = position.count / 100;
+ let r = position.count / 10;
  let ageDot = $('<div></div>');
  ageDot.addClass("ageDots");
  ageDot.css({
      'height': r,
      'width': r,
-     'left': xPos,
+     'left': xPos-(r / 2),
      'top': yPos,
     });
     $('#stage').append(ageDot);
