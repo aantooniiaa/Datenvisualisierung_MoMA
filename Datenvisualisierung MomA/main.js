@@ -1,12 +1,3 @@
-//zT fehlen Daten in allCountries? zB Länder die nur weibliche Künstler haben fehlen
-//zT gibt es gender die groß und kleingeschrieben werden und es gibt non binory gender und welche ohne gender --> totalCount ist größer als female und male count zsm
-//Landgrößen stimmen nicht mit Maxima überein, da dot nur mit r definiert wird und nicht mit rF unf rM
-
-//Kategorien sortieren
-//Legende?
-//relatives Balkendiagramm
-
-
 let stageWidth, stageHeight;
 let data;
 let allCountries;
@@ -87,9 +78,6 @@ function prepareData() {
 
   let decadeData = gmynd.groupData(artworkData, ["decade"]);
 
-  //console.log(artworkData)
-  // let creationMin = gmynd.dataMin(artworkData, "creationDate")
-  // console.log(creationMin);
 
   //creationDate in Jahrzehnte sortiert
   artworkData.forEach(artwork => {
@@ -123,17 +111,11 @@ if (category == "(  )") {
     artworkData.sortedCategory = 6;
   };
 
-//console.log(artworkData);
-
 
   for (let decadeNumber in decadeData) {
     let decadeArray = decadeData[decadeNumber];
     let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
-    //console.log(decadeArray);
-    //console.log(cumulatedDecade);
     groupedCategories[decadeNumber.toString()] = gmynd.groupData(cumulatedDecade, "category");
-    //groupedCategories = gmynd.deleteIncompleteData(groupedCategories, "category");
-    //console.log(groupedCategories) 
   };
 
   // //Alter wird ausgerechnet
@@ -144,11 +126,8 @@ if (category == "(  )") {
     let age = gmynd.duration(birth, creation);
     age = age / 31536000000;
     age = Math.floor(age)
-    //console.log(age);
    artist.age = age;
   };
-
-  //console.log(artworkData)
 
  };
 
@@ -202,36 +181,6 @@ function createDots() {
     $('#stage').append(totalDot);
   });
 
-  //Balkendiagramme
-  //für jedes Jahr ein Balken
-  //aus jedem Jahr: ein Rechteck aus groupedCategories pro Kategorie
-
-  //  for (let decadeNumber in decadeData) {
-  //    let decadeArray = decadeData[decadeNumber];
-  //    let cumulatedDecade = gmynd.cumulateData(decadeArray, ['category', 'simpleGender']);
-  //    //console.log(decadeNumber);
-  //    //console.log(cumulatedDecade);
-  //    let groupedCategories = gmynd.groupData(cumulatedDecade, "category");
-  //    //console.log(groupedCategories)
-  //    for (let i = 0; i< decadeNumber.length; i++){
-  //     let bar = $ ('<div> </div>');
-  //     const relative_h = 1000;
-  //     const x = i * 100;
-  //     const y = $('#stage').height() - realtive_h;
-  //    }
-  //    bar.data({
-  //     relativeHeight: realtive_h,
-  //     relativeWidth: 10,
-  //     relativeLeft: x,
-  //     relativeTop: y,
-  //     // absoluteHeight: r * 2,
-  //     // absoluteWidth: r * 2,
-  //     // absoluteLeft: xPos,
-  //     // absoluteTop: yPos,
-  //   });
-  //   $('#stage').append(bar);
-  //  };
-
 };
 
 function setView(viewTitle) {
@@ -253,9 +202,6 @@ function setView(viewTitle) {
 };
 
 function nextView() {
-  //console.log (viewCount);
-
-  
   if (viewCount === 0) {
     //Von Screen 0 auf Screen 1 wechseln
     const countries = $('.country');
@@ -287,7 +233,6 @@ function nextView() {
 
 
 function backView() {
-  //console.log(backCount);
   if (viewCount === 1) {
     //Von Screen 1 in Screen 0 wechseln
     const countries = $('.country');
@@ -306,8 +251,6 @@ function backView() {
     viewCount = 0;
    } else if (viewCount === 2) {
     // Von Screen 2 in Screen 1 wechseln
-    // $('#title1').hide();
-    // $('#menuLabel').hide();
     $('.bar').fadeIn();
     $('#title2').show();
     $('#menuLabel2').show();
@@ -339,24 +282,18 @@ function drawBarChart1() {
   let barNo = 0;
   for (let dec in groupedCategories) {
     let decade = groupedCategories[dec];
-    //let decMax = gmynd.dataSum(category, "count");
-    //let decMax = gmynd.dataMax(decMax, "count");
-    //console.log("decMax: "+ decMax);
     let barX = barNo * 100;
     let blockY = stageHeight;
     for (let cat in decade) {
       let category = decade[cat];
       category = gmynd.addPropPercentage(category, "count");
       let total = gmynd.dataSum(category, "count");
-      //console.log(total);
       let Max = gmynd.dataMax(category, "countPercentage");
-      //console.log(Max);
       let h = gmynd.map(total, 0, Max, 0, 80, true);
       blockY -= h;
 
       let currentBoxX = 0;
       gmynd.sortData(category, 'simpleGender');
-      //console.log(category)
       category.forEach((gender, i) => {
 
         let color = "black";
@@ -381,12 +318,10 @@ function drawBarChart1() {
   }
 };
 
-//console.log(groupedCategories);
-
 //Streudiagramm!
 //künstler nach alter in jahrzehnten gruppieren -> eine gruppe ist ein kreis
 //je größer die gruppe, desto größer der Kreis,
-//Kreise (mit ausgerechnetem Alter) auf Skala links mappen
+//Kreise (mit ausgerechnetem Alter) auf Skala mappen
 
 
 function drawScatter() {
@@ -394,9 +329,7 @@ let maxAge = gmynd.dataMax(artworkData, "age");
 let minAge = gmynd.dataMin(artworkData, "age");
 let maxDecade = gmynd.dataMax(artworkData, "creationDecade");
 let minDecade = gmynd.dataMin(artworkData, "creationDecade");
-cumulatedAge = gmynd.cumulateData(artworkData, ["creationDecade", "age"])
-// console.log(cumulatedAge);
-//console.log(maxAge + " " + minAge + " " + " " + maxDecade + " " + minDecade)
+cumulatedAge = gmynd.cumulateData(artworkData, ["creationDecade", "age"]);
 let stageBegin = $('#stage').position.left;
 let stageEnd = stageBegin + $('#stage').position.width;
 console.log(stageBegin + " " + stageEnd)
@@ -409,7 +342,6 @@ if (position.creationDecade < 1800 || isNaN(position.age)) {
 };
  let xPos = gmynd.map(position.creationDecade, 1800, maxDecade, 0, 1280);
  let yPos = gmynd.map(position.age, minAge, maxAge, stageHeight, 100);
- //const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
  let r = position.count / 10;
  let ageDot = $('<div></div>');
  ageDot.addClass("ageDots");
@@ -420,19 +352,6 @@ if (position.creationDecade < 1800 || isNaN(position.age)) {
      'top': yPos,
     });
     $('#stage').append(ageDot);
-
-//  for (let group in position) {
-//   dotMax = gmynd.dataMax(group, "count");
-//   console.log(dotMax); 
-
-//   let xPos = gmynd.map(position.group, 0, maxAge, 0, stageWidth);
-//   let yPos = gmynd.map(position.group, 0, maxDecade, 0, stageHeight);
-//   const areaAge = gmynd.map(cumulatedAge.age, 0, dotMax, 10, 100);
-//   const r = gmynd.circleRadius(areaAge); 
-//   };
-
- //dotMax = gmynd.dataMax(position, "count");
- //console.log(dotMax);
 });
 
 };
